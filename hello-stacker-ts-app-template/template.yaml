@@ -7,3 +7,25 @@ inputs:
     type: text
     name: project_name
     default: project-name
+
+  - label: Greeting message to use
+    type: text
+    name: greeting_message
+    default: Hello
+    items:
+      - Hello
+      - Whats up
+      - Hi
+      - Good morning
+
+lifecycle:
+  deploy:
+    supported-os:
+      - windows
+      - linux
+      - mac
+    requirements-check:
+      node:
+        check-command: node --version
+        info: node is is not installed
+    deploy-command: npm run start

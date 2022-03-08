@@ -1,0 +1,6 @@
+
+type: app
+description: TypeScript example application created with quickstart stack
+template: stk-quickstart-typescript/hello-stacker-ts-app-template
+plugins:
+  - plugin: stk-quickstart-typescript/ask-staker-name-ts-plugin

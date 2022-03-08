@@ -1,0 +1,9 @@
+name: hello-stacker-ts-app-template
+description: TypeScript example template to crate an app that prints a greeting message to the stacker
+types:
+  - app-template
+inputs:
+  - label: Project name
+    type: text
+    name: project_name
+    default: project-name

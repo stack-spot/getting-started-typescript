@@ -1,0 +1,38 @@
+name: ask-staker-name-ts-plugin
+description: Plugin to add capacity to hello stacker app to ask stacker name before say hello
+types:
+  - app
+hooks:
+  - type: edit
+    trigger: after-render
+    path: main.ts
+    changes:
+      - insert:
+          line: 0
+          value: "import * as readline from 'readline';\n\n"
+          when:
+            not-exists: import * as readline from 'readline';
+      - search:
+          string: "const sayHello = () => {"
+          insert-before:
+            snippet: snippets/createInterface
+          when:
+            not-exists: let rl = readline.createInterface({
+      - search:
+          string: "const sayHello = () => {"
+          insert-after:
+            value: "rl.question('Tell me your name: ', (name) => {\n"
+          when:
+            not-exists: "rl.question('Tell me your name: ', (name) => {"
+      - search:
+          string: "Stacker!"
+          replace-by:
+            value: "${name}!" 
+          when:
+            not-exists: "${name}!"
+      - search:
+          string: "console.log(helloStacker)"
+          insert-after:
+            snippet: snippets/closeQuestion 
+          when:
+            not-exists: "rl.close();"
